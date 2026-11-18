@@ -133,6 +133,11 @@ func (p *Plugin) OnDeactivate() error {
 	p.mu.Unlock()
 	return nil
 }
+func (p *Plugin) OnConfigurationChange() error {
+	p.API.PublishWebSocketEvent("configuration_changed", map[string]interface{}{}, nil)
+	return nil
+}
+
 func (p *Plugin) configuration() (config, *url.URL, error) {
 	var c config
 	if err := p.API.LoadPluginConfiguration(&c); err != nil {

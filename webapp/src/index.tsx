@@ -397,6 +397,9 @@ class Plugin {
           .catch(() => {});
       },
     );
+    registry.registerWebSocketEventHandler(`custom_${ID}_configuration_changed`, () => {
+      void reset(false).then(() => connection()).catch(() => {});
+    });
     unsub = store.subscribe(() => {
       const next = user();
       if (next !== currentUser) {
