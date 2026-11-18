@@ -19,7 +19,7 @@ bundle: build
 	mkdir -p dist/$(PLUGIN_ID)/server dist/$(PLUGIN_ID)/webapp
 	cp -R server/dist dist/$(PLUGIN_ID)/server/
 	cp -R webapp/dist dist/$(PLUGIN_ID)/webapp/
-	cd dist && tar -czf $(PLUGIN_ID)-$(VERSION).tar.gz $(PLUGIN_ID)
+	cd dist && COPYFILE_DISABLE=1 tar -czf $(PLUGIN_ID)-$(VERSION).tar.gz $(PLUGIN_ID)
 
 clean:
 	rm -rf dist server/dist webapp/dist
