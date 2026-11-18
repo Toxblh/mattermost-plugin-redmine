@@ -33,13 +33,13 @@ Cards include title, status, priority, assignee, project, tracker, updated date 
 
 All endpoints require a valid Mattermost session and verified identity. Prefix: `/plugins/space.altlinux.redmine/api/v1`.
 
-| Method | Path | Function |
-|---|---|---|
-| GET | `/connection` | Connected state, credential revision, configured server URL |
-| POST | `/connection` | Body `{ "api_key": "..." }`; check and save personal key |
-| DELETE | `/connection` | Disconnect and rotate revision |
-| GET | `/issues/123` | Normalized personal card |
-| GET | `/issues/123?refresh=1` | Bypass server cache |
+| Method | Path                    | Function                                                    |
+| ------ | ----------------------- | ----------------------------------------------------------- |
+| GET    | `/connection`           | Connected state, credential revision, configured server URL |
+| POST   | `/connection`           | Body `{ "api_key": "..." }`; check and save personal key    |
+| DELETE | `/connection`           | Disconnect and rotate revision                              |
+| GET    | `/issues/123`           | Normalized personal card                                    |
+| GET    | `/issues/123?refresh=1` | Bypass server cache                                         |
 
 Successful cards include `source_fetched_at`, `expires_at` and `server_now` (Unix milliseconds). Custom clients must preserve age, account for clock offset using `server_now`, and never restart the 300-second lifetime when receiving a server cache hit. Handle `connection_changed` by dropping old-revision data. No raw Redmine API key belongs in client card storage.
 
