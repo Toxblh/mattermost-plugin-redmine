@@ -86,6 +86,12 @@ async function getCard(id: string, refresh = false): Promise<Card> {
     if (g !== generation) throw new Error("connection_changed");
     if (saved) {
       shown.set(id, saved);
+      setTimeout(() => {
+        if (g === generation && active && shown.get(id) === saved) {
+          shown.delete(id);
+          notify();
+        }
+      }, Math.max(0, saved.expires_at - Date.now()));
       notify();
       return saved;
     }
@@ -109,7 +115,7 @@ async function getCard(id: string, refresh = false): Promise<Card> {
       shown.set(id, card);
       setTimeout(
         () => {
-          if (g === generation && active) {
+          if (g === generation && active && shown.get(id) === card) {
             shown.delete(id);
             notify();
           }
