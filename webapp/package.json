@@ -1,0 +1,21 @@
+{
+  "name": "mattermost-plugin-redmine-webapp",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "node build.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "node --import tsx --test src/cache.test.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "@types/react": "18.3.27",
+    "esbuild": "0.25.12",
+    "fake-indexeddb": "6.2.4",
+    "tsx": "4.21.0",
+    "typescript": "5.9.3"
+  },
+  "dependencies": {
+    "react": "18.3.1"
+  }
+}

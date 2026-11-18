@@ -1,0 +1,14 @@
+{
+  "id": "space.altlinux.redmine",
+  "name": "Redmine Link Cards",
+  "description": "Private Redmine link cards with personal API keys and permission-aware caches.",
+  "version": "0.1.0",
+  "min_server_version": "11.10.0",
+  "server": {"executables": {"linux-amd64": "server/dist/plugin-linux-amd64", "linux-arm64": "server/dist/plugin-linux-arm64", "darwin-arm64": "server/dist/plugin-darwin-arm64"}},
+  "webapp": {"bundle_path": "webapp/dist/main.js"},
+  "settings_schema": {"settings": [
+    {"key": "RedmineURL", "display_name": "Redmine server URL", "type": "text", "help_text": "HTTPS base URL, including an optional installation subpath. Set this before enabling link previews.", "default": ""},
+    {"key": "EncryptionKey", "display_name": "Encryption key", "type": "generated", "help_text": "Fallback 32-byte encryption secret (base64). Prefer MM_REDMINE_ENCRYPTION_KEY supplied to the Mattermost process outside its database. Use the same secret on every HA node.", "default": ""},
+    {"key": "RequestTimeoutSeconds", "display_name": "Redmine request timeout (seconds)", "type": "number", "default": "15"}
+  ]}
+}
